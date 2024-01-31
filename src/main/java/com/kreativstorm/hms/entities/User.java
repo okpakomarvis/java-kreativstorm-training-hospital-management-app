@@ -5,8 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Admin {
+@AllArgsConstructor
+public class User {
     String username;
+    Role role;
+    String name;
+    String title;
+    String info;
 }

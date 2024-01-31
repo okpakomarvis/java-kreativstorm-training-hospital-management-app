@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Patient {
-    String username, name, email, phone;
+public class Treatment {
+  Integer patientID;
+  Department department;
+  String diagnosis;
+  String treatmentDescription;
+  String prescription;
 }
