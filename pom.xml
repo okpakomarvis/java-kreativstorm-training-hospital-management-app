@@ -58,9 +58,12 @@
         </dependency>
         <dependency>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
 =======
+=======
+>>>>>>> a3e794a (pull changes from jan master repository)
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>2.2.220</version>
@@ -78,7 +81,14 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+<<<<<<< HEAD
 >>>>>>> cb1f2db (Added entity annotatitons, Schema sql and Data sql files)
+=======
+=======
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+>>>>>>> 8a52459 (added application.yml file)
+>>>>>>> a3e794a (pull changes from jan master repository)
         </dependency>
     </dependencies>
 
