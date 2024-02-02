@@ -21,13 +21,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-        <!-- Add JPA Dependency -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-
+       
         <!-- Add Jackson for JSON converters -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -56,39 +50,16 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-=======
-=======
->>>>>>> a3e794a (pull changes from jan master repository)
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>2.2.220</version>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
             <version>3.0.5</version>
         </dependency>
+       <!-- Add JPA Dependency -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-<<<<<<< HEAD
->>>>>>> cb1f2db (Added entity annotatitons, Schema sql and Data sql files)
-=======
-=======
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
->>>>>>> 8a52459 (added application.yml file)
->>>>>>> a3e794a (pull changes from jan master repository)
         </dependency>
     </dependencies>
 
