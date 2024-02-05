@@ -1,9 +1,19 @@
 package com.kreativstorm.hms.repositories;
 
-import com.kreativstorm.hms.entities.UserLogin;
+
+
+import com.kreativstorm.hms.entities.Role;
+import com.kreativstorm.hms.entities.Users;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-public interface UserRepository {
-    Optional<UserLogin> getUserByUsername(String username);
+@Repository
+public interface UserRepository  extends JpaRepository<Users, Long> {
+    Optional<Users> findByEmail(String email);
+
+    Users findByRole(Role role);
 }
+
+
