@@ -34,3 +34,4 @@
 22. deleted jdbcUserRepositoryImpl class from repository package
 23. deleted sql query files from the resource folder
 24. created Admin login details(email="admin@gmail.com", password="pass123") in the HmsApplication class implementing CommandLine
+25. created 3 APIs(http://localhost:8080/api/v1/auth/signup, http://localhost:8080/api/v1/auth/signin, http://localhost:8080/api/v1/auth/refresh), APIs for signUp, sigIn and refresh for refresh token 
