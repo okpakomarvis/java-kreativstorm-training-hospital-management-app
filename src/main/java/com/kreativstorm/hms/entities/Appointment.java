@@ -1,10 +1,7 @@
 package com.kreativstorm.hms.entities;
 
 import com.fasterxml.jackson.databind.deser.std.NumberDeserializers;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,11 +12,14 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table
+@Table(name = "HMS.APPOINTMENT")
 public class Appointment {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JoinTable(name = "HMS.USERS", joinColumns = @JoinColumn(name = "id"))
     Integer patientID;
+    @JoinTable(name = "HMS.USERS", joinColumns = @JoinColumn(name = "id"))
     Integer doctorID;
     @Column(name = "schedule_for")
     LocalDateTime scheduledFor;

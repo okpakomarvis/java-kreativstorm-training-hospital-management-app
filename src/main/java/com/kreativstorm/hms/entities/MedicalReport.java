@@ -1,8 +1,6 @@
 package com.kreativstorm.hms.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,13 +11,17 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table
+@Table (name = "HMS.MEDICAL_REPORT")
 public class MedicalReport {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String name;
+    @JoinTable(name = "HMS.USERS", joinColumns = @JoinColumn(name = "id"))
     Integer patientID;
+    @JoinTable(name = "HMS.USERS", joinColumns = @JoinColumn(name = "id"))
     Integer doctorID;
+    @JoinTable(name = "HMS.TREATMENT", joinColumns = @JoinColumn(name = "id"))
     Integer treatmentID;
     Date date;
     String diagnosis;
