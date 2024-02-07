@@ -15,15 +15,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table
+@Table(name = "HMS.USERS")
 public class Users  implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private Long id;
-   private String email;
-
+    private Long id;
+    private String email;
+    @Enumerated(EnumType.STRING)
     private Role role;
-
     private String password;
     private String name;
     private String title;
