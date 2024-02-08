@@ -18,6 +18,9 @@ public class Department {
     Long id;
     @Column(name = "DepartmentName")
     String name;
-    /*List<Integer> staff;
-    List<Integer> patients;*/
+
+    @ManyToMany(targetEntity = Users.class, mappedBy = "departments")
+    List<Users> staff;
+    @ManyToMany(targetEntity = Users.class, mappedBy = "departments")
+    List<Users> patients;
 }
