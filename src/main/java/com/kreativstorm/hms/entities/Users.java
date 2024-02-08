@@ -28,6 +28,22 @@ public class Users  implements UserDetails {
     private String title;
     private String info;
 
+    @ManyToMany(targetEntity = Department.class)
+    @JoinTable(
+            name = "patient_department",
+            joinColumns ={ @JoinColumn(name = "users_id")},
+            inverseJoinColumns = {@JoinColumn(name = "department_id")}
+    )
+    private List<Department> patiensDepartments;
+
+    @ManyToMany(targetEntity = Department.class)
+    @JoinTable(
+            name = "staff_department",
+            joinColumns ={ @JoinColumn(name = "users_id")},
+            inverseJoinColumns = {@JoinColumn(name = "department_id")}
+    )
+    private List<Department> staffDepartments;
+
     //return list of authorities granted or roles
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
