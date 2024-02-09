@@ -1,5 +1,6 @@
 package com.kreativstorm.hms.service.impl;
 
+import com.kreativstorm.hms.exception.ClientException;
 import com.kreativstorm.hms.repositories.UserRepository;
 import com.kreativstorm.hms.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class UserServiceImpl implements UserService {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-                return userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+                return userRepository.findByEmail(username).orElseThrow(() -> new ClientException("User not found"));
             }
         };
     }

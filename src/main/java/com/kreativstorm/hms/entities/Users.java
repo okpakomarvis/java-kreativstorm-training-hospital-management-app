@@ -20,6 +20,7 @@ public class Users  implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique = true)
     private String email;
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -28,6 +29,7 @@ public class Users  implements UserDetails {
     private String title;
     private String info;
 
+    //@Column(nullable = true)
     @ManyToMany(targetEntity = Department.class)
     @JoinTable(
             name = "patient_department",
@@ -36,6 +38,7 @@ public class Users  implements UserDetails {
     )
     private List<Department> patiensDepartments;
 
+    //@Column(nullable = true)
     @ManyToMany(targetEntity = Department.class)
     @JoinTable(
             name = "staff_department",

@@ -6,6 +6,7 @@ import com.kreativstorm.hms.dto.SignUpRequest;
 import com.kreativstorm.hms.dto.SigninRequest;
 import com.kreativstorm.hms.entities.Role;
 import com.kreativstorm.hms.entities.Users;
+import com.kreativstorm.hms.exception.ClientException;
 import com.kreativstorm.hms.repositories.UserRepository;
 import com.kreativstorm.hms.service.AuthenticationService;
 import com.kreativstorm.hms.service.JWTService;
@@ -32,7 +33,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
        Optional<Users> userExist = userRepository.findByEmail(signUpRequest.getEmail());
 
        if(userExist.isPresent()){
-           throw new RuntimeException("User  Already exist");
+           throw new ClientException("User  Already exist");
        }
         Users users = new Users();
 
@@ -48,7 +49,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public JWTSigninAuthenticationResponse signIn(SigninRequest signinRequest){
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 signinRequest.getEmail(), signinRequest.getPassword()));
-        var user = userRepository.findByEmail(signinRequest.getEmail()).orElseThrow(()-> new IllegalArgumentException("invalid email or password"));
+        var user = userRepository.findByEmail(signinRequest.getEmail()).orElseThrow(()-> new ClientException("invalid email or password"));
         var jwt = jwtService.generateToken(user);
         var resfreshJwt = jwtService.generateRefreshToken(new HashMap<>(), user);
         JWTSigninAuthenticationResponse jwtSigninAuthenticationResponse = new JWTSigninAuthenticationResponse();

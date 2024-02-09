@@ -1,11 +1,9 @@
 package com.kreativstorm.hms.controller;
 
-import com.kreativstorm.hms.dto.JWTSigninAuthenticationResponse;
-import com.kreativstorm.hms.dto.RefreshTokenRequest;
-import com.kreativstorm.hms.dto.SignUpRequest;
-import com.kreativstorm.hms.dto.SigninRequest;
+import com.kreativstorm.hms.dto.*;
 import com.kreativstorm.hms.entities.Users;
 import com.kreativstorm.hms.service.AuthenticationService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +19,14 @@ public class AuthenticationController {
     private final AuthenticationService authenticationService;
 
     @PostMapping("/signup")
-    public ResponseEntity<Users> signup(@RequestBody SignUpRequest signUpRequest){
-        return new  ResponseEntity<>(authenticationService.signup(signUpRequest), HttpStatus.CREATED);
+    public ResponseEntity<ResponseRequest> signup(@RequestBody @Valid SignUpRequest signUpRequest){
+        ResponseRequest response = new ResponseRequest();
+        response.setResponse(authenticationService.signup(signUpRequest));
+        return new  ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<JWTSigninAuthenticationResponse> signIn(@RequestBody SigninRequest signinRequest){
+    public ResponseEntity<JWTSigninAuthenticationResponse> signIn(@RequestBody  @Valid SigninRequest signinRequest){
         return new ResponseEntity<>(authenticationService.signIn(signinRequest), HttpStatus.CREATED);
     }
 
