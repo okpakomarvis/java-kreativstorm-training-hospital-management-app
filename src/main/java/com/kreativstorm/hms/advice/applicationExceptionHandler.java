@@ -4,14 +4,35 @@ import com.kreativstorm.hms.exception.ClientErrorResponse;
 import com.kreativstorm.hms.exception.ClientException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.kreativstorm.hms.utill.Constant.FAILED;
+import static com.kreativstorm.hms.utill.Constant.STATUS;
 
 @RestControllerAdvice
 public class applicationExceptionHandler {
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, Object>> handleInValidArgument(MethodArgumentNotValidException ex){
+        Map<String, Object> errorMap = new HashMap<>();
+
+        ex.getBindingResult().getFieldErrors().forEach(error->
+                errorMap.put(error.getField(), error.getDefaultMessage())
+        );
+
+        Map<String, Object> error = new HashMap<>();
+        error.put(STATUS, FAILED);
+        error.put("TimeStamp", System.currentTimeMillis());
+        error.put("errors:", errorMap);
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ClientException.class)
