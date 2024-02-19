@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,49 +16,28 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "HMS.USERS")
-public class Users  implements UserDetails {
+@Table(name = "HMS.ADMIN")
+public class Admin implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true, name = "email")
+    @Column(unique = true)
     private String email;
-    @Enumerated(EnumType.STRING)
-    private Role role;
     private String password;
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.ADMIN;
     private String name;
-    private String title;
-    private String info;
 
-    //@Column(nullable = true)
-    @ManyToMany(targetEntity = Department.class)
-    @JoinTable(
-            name = "patient_department",
-            joinColumns ={ @JoinColumn(name = "users_id")},
-            inverseJoinColumns = {@JoinColumn(name = "department_id")}
-    )
-    private List<Department> patiensDepartments;
 
-    //@Column(nullable = true)
-    @ManyToMany(targetEntity = Department.class)
-    @JoinTable(
-            name = "staff_department",
-            joinColumns ={ @JoinColumn(name = "users_id")},
-            inverseJoinColumns = {@JoinColumn(name = "department_id")}
-    )
-    private List<Department> staffDepartments;
-
-    //return list of authorities granted or roles
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
+        return List.of(new SimpleGrantedAuthority("ADMIN"));
     }
 
     @Override
     public String getUsername() {
         return email;
     }
-
 
     @Override
     public boolean isAccountNonExpired() {

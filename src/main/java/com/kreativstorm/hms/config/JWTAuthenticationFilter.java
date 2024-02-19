@@ -1,7 +1,7 @@
 package com.kreativstorm.hms.config;
 
 import com.kreativstorm.hms.service.JWTService;
-import com.kreativstorm.hms.service.UserService;
+import com.kreativstorm.hms.service.UsersService;
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -23,7 +23,7 @@ import java.io.IOException;
 public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
     private final JWTService jwtService;
-    private final UserService userService;
+    private final UsersService usersService;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
@@ -36,7 +36,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
         jwt = authHeader.substring(7);
         userEmail = jwtService.extractUserName(jwt);
         if(StringUtils.isNotEmpty(userEmail) && SecurityContextHolder.getContext().getAuthentication() == null){
-            UserDetails userDetails = userService.userDetailsService().loadUserByUsername(userEmail);
+            UserDetails userDetails = usersService.userDetailsService().loadUserByUsername(userEmail);
 
             if(jwtService.isTokenValid(jwt, userDetails)){
                 SecurityContext securityContext = SecurityContextHolder.createEmptyContext();

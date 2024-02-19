@@ -7,10 +7,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,4 +31,23 @@ public class AuthenticationController {
     public ResponseEntity<JWTSigninAuthenticationResponse> refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequest){
         return new ResponseEntity<>(authenticationService.refreshToken(refreshTokenRequest), HttpStatus.CREATED);
     }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/delete")
+    public void delete(@RequestBody DeleteRequest deleteRequest){
+        authenticationService.deleteUser(deleteRequest);
+    }
+
+    @PutMapping("/update/email={email}")
+    public ResponseEntity<Users> upadateUser(@PathVariable("email") String email,
+                                             @Valid @RequestBody SignUpRequest signUpRequest){
+        Users users = new Users();
+        if(authenticationService.update(email, signUpRequest).isPresent())
+        {
+            users = authenticationService.update(email, signUpRequest).get();
+            return new  ResponseEntity<>(users, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
 }

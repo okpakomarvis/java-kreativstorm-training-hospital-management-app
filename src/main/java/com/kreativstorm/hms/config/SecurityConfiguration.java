@@ -1,7 +1,7 @@
 package com.kreativstorm.hms.config;
 
 import com.kreativstorm.hms.entities.Role;
-import com.kreativstorm.hms.service.UserService;
+import com.kreativstorm.hms.service.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +24,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfiguration {
     private final JWTAuthenticationFilter jwtAuthenticationFilter;
 
-    private  final UserService userService;
+    private  final UsersService usersService;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
@@ -47,7 +47,7 @@ public class SecurityConfiguration {
     @Bean
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userService.userDetailsService());
+        authenticationProvider.setUserDetailsService(usersService.userDetailsService());
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
