@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("hms")
+@RequestMapping("/api/v1/appointment")
 public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService;
 
-    @GetMapping("/appointment/{id}")
+    @GetMapping("/{id}")
     ResponseEntity<Appointment> getAppointmentByPatientID(@PathVariable("id") Integer patientID){
         return appointmentService.getAppointment(patientID).map(Appointment -> ResponseEntity.status(HttpStatus.FOUND)
                 .body(Appointment)).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());

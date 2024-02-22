@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("hms")
+@RequestMapping("/api/v1/treatments")
 public class TreatmentController {
     @Autowired
     TreatmentService treatmentService;

@@ -12,17 +12,17 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("hms")
+@RequestMapping("/api/v1/departments")
 public class DepartmentController {
     @Autowired
     DepartmentService departmentService;
 
-    @GetMapping("/departments")
+    @GetMapping
     public List<Department> getAll(){
         return departmentService.getAll();
     }
 
-    @GetMapping("/departments/{name}")
+    @GetMapping("/department/{name}")
     public List<Department> getDepartmentsByName(@PathVariable("name") String name){
         return departmentService.getDepartmentsByName(name);
     }

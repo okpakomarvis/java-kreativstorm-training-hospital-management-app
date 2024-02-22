@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("hms")
+@RequestMapping("/api/v1/medical")
 public class MedicalReportController {
     @Autowired
     MedicalReportService medicalReportService;

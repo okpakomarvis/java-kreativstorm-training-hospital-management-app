@@ -11,7 +11,4 @@ public interface AuthenticationService {
     JWTSigninAuthenticationResponse signIn(SigninRequest signinRequest);
     JWTSigninAuthenticationResponse refreshToken(RefreshTokenRequest refreshTokenRequest);
 
-    void deleteUser(DeleteRequest deleteRequest);
-
-    Optional<Users> update(String email, SignUpRequest signUpRequest);
 }
