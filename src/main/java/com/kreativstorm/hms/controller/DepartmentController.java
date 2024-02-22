@@ -9,18 +9,22 @@ import java.util.List;
 
 
 @RestController
+<<<<<<< HEAD
 @RequestMapping("hms")
 @CrossOrigin(origins = "http://localhost:4200")
+=======
+@RequestMapping("/api/v1/departments")
+>>>>>>> 894f12e529360fca67f1c58310f63373596da94d
 public class DepartmentController {
     @Autowired
     DepartmentService departmentService;
 
-    @GetMapping("/departments")
+    @GetMapping
     public List<Department> getAll(){
         return departmentService.getAll();
     }
 
-    @GetMapping("/departments/{name}")
+    @GetMapping("/department/{name}")
     public List<Department> getDepartmentsByName(@PathVariable("name") String name){
         return departmentService.getDepartmentsByName(name);
     }

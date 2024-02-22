@@ -1,7 +1,9 @@
 package com.kreativstorm.hms.service.impl;
 
+import com.kreativstorm.hms.exception.ClientException;
 import com.kreativstorm.hms.service.JWTService;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -40,7 +42,12 @@ public class JWTServiceImpl implements JWTService {
     }
 
     private Claims extractAllClaims(String token){
-        return Jwts.parser().setSigningKey(getSigninKey()).build().parseClaimsJws(token).getBody();
+        try {
+            return Jwts.parser().setSigningKey(getSigninKey()).build().parseClaimsJws(token).getBody();
+        }catch(ExpiredJwtException exc){
+            throw new ClientException(exc.getMessage());
+        }
+
     }
     public boolean isTokenValid(String token, UserDetails userDetails){
         final String username = extractUserName(token);
@@ -57,6 +64,6 @@ public class JWTServiceImpl implements JWTService {
     }
 
     private boolean isTokenExpired(String token){
-        return extratClaim(token, Claims::getExpiration).before(new Date());
+            return  extratClaim(token, Claims::getExpiration).before(new Date());
     }
 }

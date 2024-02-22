@@ -8,8 +8,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+<<<<<<< HEAD
 @RequestMapping("hms")
 @CrossOrigin(origins = "http://localhost:4200")
+=======
+@RequestMapping("/api/v1/medical")
+>>>>>>> 894f12e529360fca67f1c58310f63373596da94d
 public class MedicalReportController {
     @Autowired
     MedicalReportService medicalReportService;

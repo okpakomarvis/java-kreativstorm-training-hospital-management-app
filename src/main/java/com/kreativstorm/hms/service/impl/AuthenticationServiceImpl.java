@@ -77,13 +77,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     }
 
-    @Override
-    public void deleteUser(DeleteRequest deleteRequest) {
-        usersRepository.deleteUsersByEmail(deleteRequest.email);
-    }
 
+<<<<<<< HEAD
     /*@Override
     public Optional<Users> update(String email, SignUpRequest signUpRequest) {
         return usersRepository.updateUsersByEmail(email, signUpRequest);
     }*/
+=======
+>>>>>>> 894f12e529360fca67f1c58310f63373596da94d
 }

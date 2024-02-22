@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
+<<<<<<< HEAD
 @RequestMapping("hms")
 @CrossOrigin(origins = "http://localhost:4200")
+=======
+@RequestMapping("/api/v1/treatments")
+>>>>>>> 894f12e529360fca67f1c58310f63373596da94d
 public class TreatmentController {
     @Autowired
     TreatmentService treatmentService;

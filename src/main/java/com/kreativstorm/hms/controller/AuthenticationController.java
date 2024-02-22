@@ -33,12 +33,8 @@ public class AuthenticationController {
         return new ResponseEntity<>(authenticationService.refreshToken(refreshTokenRequest), HttpStatus.CREATED);
     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/delete")
-    public void delete(@RequestBody DeleteRequest deleteRequest){
-        authenticationService.deleteUser(deleteRequest);
-    }
 
+<<<<<<< HEAD
     /*@PutMapping("/update/email={email}")
     public ResponseEntity<Users> upadateUser(@PathVariable("email") String email,
                                              @Valid @RequestBody SignUpRequest signUpRequest){
@@ -51,4 +47,8 @@ public class AuthenticationController {
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 */
+=======
+
+
+>>>>>>> 894f12e529360fca67f1c58310f63373596da94d
 }
