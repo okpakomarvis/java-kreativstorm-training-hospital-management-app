@@ -1,0 +1,30 @@
+<form method="post">
+  <br/>
+  <label>Email:</label>
+  <br/>
+  <input #email>
+  <br/><br/>
+  <label>Password:</label>
+  <br/>
+  <input #password>
+  <br/><br/>
+  <label>Title:</label>
+  <br/>
+  <input #title>
+  <br/><br/>
+  <label>Name:</label>
+  <br/>
+  <input #name>
+  <br/><br/>
+  <label>Info:</label>
+  <br/>
+  <input #info>
+  <br/><br/>
+  <br/><br/>
+
+  <button (click)="signup(email.value, password.value, title.value, name.value, info.value);">Sign up </button>
+</form>
+
+<br/><br/>
+
+<a routerLink="../signin">Already have account? Sign in.</a>

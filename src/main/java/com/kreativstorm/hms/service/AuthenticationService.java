@@ -13,5 +13,5 @@ public interface AuthenticationService {
 
     void deleteUser(DeleteRequest deleteRequest);
 
-    Optional<Users> update(String email, SignUpRequest signUpRequest);
+   // Optional<Users> update(String email, SignUpRequest signUpRequest);
 }

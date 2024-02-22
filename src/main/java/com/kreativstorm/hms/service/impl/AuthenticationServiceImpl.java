@@ -82,8 +82,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         usersRepository.deleteUsersByEmail(deleteRequest.email);
     }
 
-    @Override
+    /*@Override
     public Optional<Users> update(String email, SignUpRequest signUpRequest) {
         return usersRepository.updateUsersByEmail(email, signUpRequest);
-    }
+    }*/
 }

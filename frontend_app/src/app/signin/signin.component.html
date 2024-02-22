@@ -1,0 +1,18 @@
+<form method="get">
+  <br/>
+  <label>Email:</label>
+  <br/>
+  <input #email>
+  <br/><br/>
+  <label>Password:</label>
+  <br/>
+  <input #password>
+  <br/><br/>
+  <button (click)="signin(email.value, password.value);">Sign in </button>
+</form>
+
+<br/><br/>
+
+<a routerLink="../signup">Don't have an account? Sign up</a>
+
+

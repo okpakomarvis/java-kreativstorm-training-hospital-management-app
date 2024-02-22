@@ -1,0 +1,21 @@
+<h2>Patients</h2>
+<input id="search" type="text" placeholder="Enter patients id..."
+       [(ngModel)]="searchText" (ngModelChange)="textChange()"/>
+<br/>
+<ul class="nazivi">
+  <li *ngFor="let patient of patients" >
+    <div style="display: flex">
+      <div
+        (click)= "onSelect(patient)"
+        [class.selected]="patient === selectedPatient">
+        <span class="badge">{{patient.email}}</span>
+      </div>
+    </div>
+    <br/>
+  </li>
+</ul>
+
+<div *ngIf="selectedPatient">
+  <app-patient-details [patient]="selectedPatient"> </app-patient-details>
+  <br/>
+</div>
