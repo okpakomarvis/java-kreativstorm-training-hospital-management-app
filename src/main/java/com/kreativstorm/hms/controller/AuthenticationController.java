@@ -32,22 +32,7 @@ public class AuthenticationController {
         return new ResponseEntity<>(authenticationService.refreshToken(refreshTokenRequest), HttpStatus.CREATED);
     }
 
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/delete")
-    public void delete(@RequestBody DeleteRequest deleteRequest){
-        authenticationService.deleteUser(deleteRequest);
-    }
 
-    @PutMapping("/update/email={email}")
-    public ResponseEntity<Users> upadateUser(@PathVariable("email") String email,
-                                             @Valid @RequestBody SignUpRequest signUpRequest){
-        Users users = new Users();
-        if(authenticationService.update(email, signUpRequest).isPresent())
-        {
-            users = authenticationService.update(email, signUpRequest).get();
-            return new  ResponseEntity<>(users, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-    }
+
 
 }
