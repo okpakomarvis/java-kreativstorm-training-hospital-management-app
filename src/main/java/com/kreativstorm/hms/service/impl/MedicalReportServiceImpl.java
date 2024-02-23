@@ -18,4 +18,9 @@ public class MedicalReportServiceImpl implements MedicalReportService {
     public Optional<MedicalReport> getMedRep(Integer patientID) {
         return medicalReportRepository.findMedicalReportByPatientID(patientID);
     }
+
+    @Override
+    public void saveMedRep(MedicalReport medicalReport) {
+        medicalReportRepository.save(medicalReport);
+    }
 }

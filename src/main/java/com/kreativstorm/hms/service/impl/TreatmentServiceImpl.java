@@ -19,4 +19,9 @@ public class TreatmentServiceImpl implements TreatmentService {
     public Optional<Treatment> getTreatment(Integer id) {
         return treatmentRepository.findTreatmentById(id);
     }
+
+    @Override
+    public void saveTreatment(Treatment treatment) {
+        treatmentRepository.save(treatment);
+    }
 }

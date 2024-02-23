@@ -1,0 +1,48 @@
+<h2>Medical Reports</h2>
+<br/>
+<input id="searchPatient" type="number" placeholder="enter patients ID" #search >
+
+<div *ngIf="search">
+
+</div>
+
+<!-- list patients that match entered ID -->
+
+<br/>
+<label for="cb">I want to add new report</label>
+<input type="checkbox" id="cb" #cb (click)="refresh()" />
+
+<div *ngIf="cb.checked">
+  <br/>
+  <h3>Enter new medical report</h3>
+  <form method="get">
+    <br/>
+    <label>Name:</label>
+    <br/>
+    <input #name>
+    <br/><br/>
+    <label>Patient:</label>
+    <br/>
+    <input type="number" #patientID>
+    <br/><br/>
+    <label>Doctor:</label>
+    <br/>
+    <input type="number" #doctorID>
+    <br/><br/>
+    <label>Treatment:</label>
+    <br/>
+    <input type="number" #treatmentID>
+    <br/><br/>
+    <label>Diagnosis:</label>
+    <br/>
+    <input #diagnosis>
+    <br/><br/>
+    <label>Prescription:</label>
+    <br/>
+    <input #prescription>
+    <br/><br/>
+
+    <button (click)="addMedRep(name.value, Number(patientID.value), Number(doctorID.value),
+            treatmentID.value, diagnosis.value, prescription.value)">Enter</button>
+  </form>
+</div>

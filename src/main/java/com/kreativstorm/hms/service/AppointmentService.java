@@ -6,4 +6,6 @@ import java.util.Optional;
 
 public interface AppointmentService {
     Optional<Appointment> getAppointment(Integer patientID);
+
+    void saveAppointment(Appointment appointment);
 }

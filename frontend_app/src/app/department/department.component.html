@@ -1,0 +1,15 @@
+<h2>Departments</h2>
+<br/>
+
+<ul class="departments">
+  <li *ngFor="let department of departments" >
+    <div style="display: flex">
+      <div
+        (click)= "onSelect(department)"
+        [class.selected]="department === selectedDepartment">
+        <span class="badge">{{department.name}}</span>
+      </div>
+    </div>
+    <br/>
+  </li>
+</ul>
