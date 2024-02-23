@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {catchError, Observable, of, tap} from "rxjs";
+import {Appointment} from "./appointment";
 import {MedicalReport} from "./medicalReport";
+import {Treatment} from "./treatment";
 
 @Injectable({
   providedIn: 'root'
 })
-export class MedicalReportService {
-  private medRepURL: string = "http://localhost:8080/api/v1/medical"
+export class TreatmentService {
 
+  private treatmentURL = "http://localhost:8080/api/v1/treatments"
   constructor(private http: HttpClient) { }
 
   private handleError<T>(operation = 'operation', result?: T){
@@ -19,10 +21,10 @@ export class MedicalReportService {
     };
   }
 
-  addMedRep(medRep: MedicalReport){
-    this.http.post(this.medRepURL + "/save", medRep).pipe(
-      tap(()=>console.log('Medical report added successfully.')),
-      catchError(this.handleError<MedicalReport>('saveMedRep',undefined))
+  addTreatment(treatment: Treatment){
+    this.http.post(this.treatmentURL + "/save", treatment).pipe(
+      tap(()=>console.log('Treatment added successfully.')),
+      catchError(this.handleError<MedicalReport>('saveTreatment',undefined))
     );
   }
 }

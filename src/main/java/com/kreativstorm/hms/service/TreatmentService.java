@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface TreatmentService {
     Optional<Treatment> getTreatment(Integer patientID);
+    void saveTreatment(Treatment treatment);
 }

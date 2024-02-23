@@ -14,6 +14,7 @@ import { SignupComponent } from './signup/signup.component';
 import { PatientsComponent } from './patients/patients.component';
 import { PatientDetailsComponent } from './patient-details/patient-details.component';
 import {JwtInterceptorInterceptor} from "./jwt-interceptor.interceptor";
+import { TreatmentComponent } from './treatment/treatment.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {JwtInterceptorInterceptor} from "./jwt-interceptor.interceptor";
     MedicalReportComponent,
     SignupComponent,
     PatientsComponent,
-    PatientDetailsComponent
+    PatientDetailsComponent,
+    TreatmentComponent
   ],
   imports: [
     BrowserModule,

@@ -7,4 +7,5 @@ import java.util.List;
 public interface DepartmentService {
     List<Department> getAll();
     List<Department> getDepartmentsByName(String name);
+    void saveDepartment(Department department);
 }

@@ -16,11 +16,6 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 
     Users findByRole(Role role);
 
-
-<<<<<<< HEAD
-    //Optional<Users> updateUsersByEmail(String email, SignUpRequest signUpRequest);
-=======
->>>>>>> 894f12e529360fca67f1c58310f63373596da94d
 }
 
 

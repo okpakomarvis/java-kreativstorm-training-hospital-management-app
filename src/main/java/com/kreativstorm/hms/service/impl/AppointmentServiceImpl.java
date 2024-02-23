@@ -22,4 +22,9 @@ public class AppointmentServiceImpl implements AppointmentService {
     public Optional<Appointment> getAppointment(Integer patientID) {
         return appointmentRepository.getAppointmentByPatientID(patientID);
     }
+
+    @Override
+    public void saveAppointment(Appointment appointment) {
+        appointmentRepository.save(appointment);
+    }
 }

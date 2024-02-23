@@ -1,0 +1,17 @@
+<h2>Treatments</h2>
+
+<form method="post">
+  <label for="mrID">Medical report:</label>
+  <br/>
+  <input type="number" id="mrID" #medRepID placeholder="Enter medical reports ID">
+  <br/><br/>
+  <label for="dID">Department:</label>
+  <br/>
+  <input type="number" id="dID" #departmentID placeholder="Enter departments ID">
+  <br/><br/>
+  <label for="desc">Description:</label>
+  <br/>
+  <input type="text" id="desc" #description>
+  <br/><br/>
+  <button (click)="addTreatment(medRepID.valueAsNumber, departmentID.valueAsNumber, description.value)">Enter treatment</button>
+</form>

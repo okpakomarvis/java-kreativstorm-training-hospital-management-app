@@ -31,7 +31,6 @@ public class Department {
     @Column(name = "DepartmentName")
     String name;
 
-    @NotNull(message = "must not be null")
     @ManyToMany(targetEntity = Users.class, mappedBy = "staffDepartments")
     List<Users> staff;
     @ManyToMany(targetEntity = Users.class, mappedBy = "patiensDepartments")

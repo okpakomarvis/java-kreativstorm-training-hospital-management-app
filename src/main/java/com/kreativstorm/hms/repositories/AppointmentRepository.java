@@ -11,4 +11,5 @@ import java.util.Optional;
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer> {
     Optional<Appointment> getAppointmentByPatientID(Integer patientID);
+
 }

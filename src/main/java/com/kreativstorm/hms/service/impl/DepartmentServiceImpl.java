@@ -24,4 +24,9 @@ public class DepartmentServiceImpl implements DepartmentService {
     public List<Department> getDepartmentsByName(String name){
         return  departmentRepository.getDepartmentsByNameContainingIgnoreCase(name);
     }
+
+    @Override
+    public void saveDepartment(Department department) {
+        departmentRepository.save(department);
+    }
 }

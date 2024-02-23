@@ -1,2 +1,17 @@
 <h2> Schedule appointment </h2>
-<input type="date">
+
+<form method="post">
+  <label for="pID">Patient:</label>
+  <br/>
+  <input type="number" id="pID" #patientID placeholder="Enter patients ID">
+  <br/><br/>
+  <label for="dID">Doctor:</label>
+  <br/>
+  <input type="number" id="dID" #doctorID placeholder="Enter doctors ID">
+  <br/><br/>
+  <label for="scheduled">Schedule for:</label>
+  <br/>
+  <input type="date" id="scheduled" #date>
+  <br/><br/>
+  <button (click) = "addAppointment(patientID.valueAsNumber, doctorID.valueAsNumber, date.valueAsDate)">Schedule</button>
+</form>
