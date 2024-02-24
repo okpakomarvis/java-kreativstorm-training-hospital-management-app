@@ -1,14 +1,16 @@
-<form method="get">
+<form #authenticationForm = "ngForm" name="authenticationForm">
   <br/>
   <label>Email:</label>
   <br/>
-  <input #email>
+  <input [(ngModel)]="user?.email" [disabled] = "authenticating" autocomplete="email" name="email"
+    placeholder="enter email" required type="email">
   <br/><br/>
   <label>Password:</label>
   <br/>
-  <input #password>
+  <input [(ngModel)]="user?.password" [disabled] = "authenticating" autocomplete="current-password" name="password"
+         placeholder="enter password" required type="password">
   <br/><br/>
-  <button (click)="signin(email.value, password.value);">Sign in </button>
+  <button (click)="signin();" [disabled]="!authenticationForm.valid || authenticating" type="submit">Sign in </button>
 </form>
 
 <br/><br/>

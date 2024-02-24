@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, of, tap} from "rxjs";
 import {User} from "./user";
 import {SignUpRequest} from "./sign-up-request";
+import {JwtToken} from "./jwt-token";
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +24,8 @@ export class SigninService {
     };
   }
 
-  signIn(user: User): Observable<User>{
-    return this.http.post<User>(this.userURL + '/signin', user).pipe(
-      tap(_ => console.log('fetched user')),
-      catchError(this.handleError<User>('sign in', undefined))
-    );
+  signIn(user: User): Observable<JwtToken>{
+    return this.http.post<JwtToken>(this.userURL + '/signin', user);
   }
 
   signUp(signUpReq : SignUpRequest){
@@ -37,5 +35,9 @@ export class SigninService {
       catchError(this.handleError<User>('sign up', undefined))
     )*/
 
+  }
+
+  signOut(){
+    localStorage.removeItem('token');
   }
 }

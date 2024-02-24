@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,12 +45,34 @@ public class UsersServiceImpl implements UsersService {
     public Optional<Users> update(int id, SignUpRequest signUpRequest) {
         Users user = new Users();
         user.setId((long) id);
+        user.setEmail(signUpRequest.getEmail());
         user.setTitle(signUpRequest.getTitle());
         user.setInfo(signUpRequest.getInfo());
         user.setName(signUpRequest.getName());
-        user.setPassword(user.getPassword());
-        user.setEmail(user.getEmail());
+        user.setPassword(signUpRequest.getPassword());
         user.setRole(Role.PATIENT);
         return Optional.of(usersRepository.saveAndFlush(user));
     }
+
+    @Override
+    public Users getCurrentUser(Integer id) {
+        return usersRepository.getUsersById(id);
+    }
+
+    @Override
+    public List<Users> getAllPatients() {
+        return usersRepository.getAllByAuthoritiesIs("PATIENT");
+    }
+
+    @Override
+    public List<Users> getAllUsers() {
+        return usersRepository.findAll();
+    }
+
+    @Override
+    public Optional<Users> getUserByID(Long id) {
+        return usersRepository.findById(id);
+    }
+
+
 }

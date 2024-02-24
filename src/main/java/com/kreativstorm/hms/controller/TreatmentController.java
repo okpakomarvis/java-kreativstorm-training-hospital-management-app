@@ -1,6 +1,8 @@
 package com.kreativstorm.hms.controller;
 
+import com.kreativstorm.hms.entities.MedicalReport;
 import com.kreativstorm.hms.entities.Treatment;
+import com.kreativstorm.hms.exception.ClientException;
 import com.kreativstorm.hms.service.TreatmentService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +31,19 @@ public class TreatmentController {
     @PostMapping("/save")
     public void addTreatment(@RequestBody @Valid Treatment treatment){
         treatmentService.saveTreatment(treatment);
+    }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Treatment> upadateTreatment(@PathVariable("id") Integer id,
+                                                              @Valid @RequestBody Treatment treatment){
+        Optional<Treatment> treatment1 = treatmentService.update(id, treatment);
+        if(treatment1.isEmpty()){
+            throw new ClientException("Treatment Not Found");
+        }
+        return new ResponseEntity<>(treatment1.get(), HttpStatus.OK);
+    }
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/delete/{id}")
+    public void delete(@PathVariable("id") Integer id){
+        treatmentService.deleteTreatment(id);
     }
 }
