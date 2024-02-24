@@ -1,29 +1,40 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SigninService} from "../signin.service";
 import {User} from "../user";
 import {Router} from "@angular/router";
+import {UsersService} from "../users.service";
+import {JwtToken} from "../jwt-token";
 
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
-export class SigninComponent {
+export class SigninComponent implements OnInit{
   public users: User[] | undefined;
+  // @ts-ignore
+  public user: User;
+  authenticating = false;
+  loginFailed = false;
 
-  constructor(private signinService: SigninService, private router: Router) {
+  constructor(private signinService: SigninService, private router: Router, private usersService: UsersService) {
   }
 
-  signin(email: string, password: string) {
-    email = email.trim();
-    password = password.trim();
-    if(!email || !password){
-      return;
-    }
-    this.signinService.signIn({email, password} as User).subscribe((res: any) => {
-      console.log('User signed in successfully');
-      localStorage.setItem('token', JSON.stringify(res.refreshToken));
-      this.router.navigateByUrl('/');
-    });
+  ngOnInit() {
+  }
+
+  signin() {
+    this.authenticating = true;
+    this.loginFailed = false;
+    this.signinService.signIn(this.user).subscribe(
+      (jwtToken: JwtToken) => this.successfulLogin(jwtToken),
+      () => this.loginFailed = true
+    ).add(() => this.authenticating = false);
+  }
+
+  successfulLogin(jwtToken: JwtToken){
+    localStorage.setItem('token', jwtToken.token);
+    this.usersService.getCurrentUser().subscribe((currentUser:User) => this.usersService.currentUser = currentUser);
+    this.router.navigate(['/']);
   }
 }

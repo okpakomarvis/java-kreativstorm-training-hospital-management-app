@@ -8,6 +8,7 @@ import com.kreativstorm.hms.entities.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -16,6 +17,9 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 
     Users findByRole(Role role);
 
+    Users getUsersById(Integer id);
+
+    List<Users> getAllByAuthoritiesIs(String authority);
 }
 
 
