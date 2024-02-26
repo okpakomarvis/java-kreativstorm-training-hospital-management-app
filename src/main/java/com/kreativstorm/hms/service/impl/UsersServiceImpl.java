@@ -1,6 +1,5 @@
 package com.kreativstorm.hms.service.impl;
 
-import com.kreativstorm.hms.dto.DeleteRequest;
 import com.kreativstorm.hms.dto.SignUpRequest;
 import com.kreativstorm.hms.entities.Role;
 import com.kreativstorm.hms.entities.Users;
@@ -13,8 +12,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -55,13 +57,26 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Users getCurrentUser(Integer id) {
-        return usersRepository.getUsersById(id);
+    public Optional<Users> getCurrentUser(Integer id) {
+        return usersRepository.findById((long) id);
     }
 
     @Override
     public List<Users> getAllPatients() {
-        return usersRepository.getAllByAuthoritiesIs("PATIENT");
+
+        Predicate<Users> user = (u)->u.getRole() ==Role.PATIENT ;
+
+        //return usersRepository.getAllByAuthoritiesIs("PATIENT");
+        List<Users> users = usersRepository.findAll();
+
+        if(users.isEmpty()){
+            users = Collections.emptyList();
+        }else {
+          users = users.stream().filter(user).collect(Collectors.toList());
+        }
+
+        return users;
+
     }
 
     @Override
