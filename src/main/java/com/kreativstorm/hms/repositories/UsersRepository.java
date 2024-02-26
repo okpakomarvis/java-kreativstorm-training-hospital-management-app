@@ -17,9 +17,9 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 
     Users findByRole(Role role);
 
-    Users getUsersById(Integer id);
+    //Users getUsersById(Integer id);
 
-    List<Users> getAllByAuthoritiesIs(String authority);
+    //List<Users> getAllByAuthoritiesIs(String authority);
 }
 
 

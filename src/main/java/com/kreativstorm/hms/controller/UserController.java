@@ -35,8 +35,12 @@ public class UserController {
     }
 
     @GetMapping("/current-user")
-    public Users getCurrentUser(){
-        return usersService.getCurrentUser(1);
+    public ResponseEntity<Users> getCurrentUser(){
+        Optional<Users> user = usersService.getCurrentUser(1);
+        if(user.isEmpty()){
+            throw new ClientException("User Not Found");
+        }
+        return new ResponseEntity<>(user.get(), HttpStatus.OK);
     }
 
     @GetMapping("/patients")

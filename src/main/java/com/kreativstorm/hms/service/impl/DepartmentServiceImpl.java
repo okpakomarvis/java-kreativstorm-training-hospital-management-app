@@ -54,7 +54,6 @@ public class DepartmentServiceImpl implements DepartmentService {
         department1.setName(department.getName());
         department1.setPatients(department.getPatients());
         department1.setStaff(department.getStaff());
-
         return Optional.of(departmentRepository.saveAndFlush(department1));
     }
 
@@ -64,7 +63,8 @@ public class DepartmentServiceImpl implements DepartmentService {
         department1.setName(department.getName());
         department1.setStaff(department.getStaff());
         List<Users> users =  department.getPatients();
-        users.add(usersRepository.getUsersById(patientID));
+        Optional<Users> user = usersRepository.findById((long) patientID);
+        users.add(user.get());
         department1.setPatients(users);
         return Optional.of(departmentRepository.saveAndFlush(department1));
     }
@@ -75,7 +75,8 @@ public class DepartmentServiceImpl implements DepartmentService {
         department1.setName(department.getName());
         department1.setPatients(department.getPatients());
         List<Users> users =  department.getPatients();
-        users.add(usersRepository.getUsersById(staffID));
+        Optional<Users> user = usersRepository.findById((long) staffID);
+        users.add(user.get());
         department1.setStaff(users);
         return Optional.of(departmentRepository.saveAndFlush(department1));
     }
@@ -86,7 +87,8 @@ public class DepartmentServiceImpl implements DepartmentService {
         department1.setName(department.getName());
         department1.setStaff(department.getStaff());
         List<Users> users =  department.getPatients();
-        users.remove(usersRepository.getUsersById(patientID));
+        Optional<Users> user = usersRepository.findById((long) patientID);
+        users.remove(user.get());
         department1.setPatients(users);
         return Optional.of(departmentRepository.saveAndFlush(department1));
     }
@@ -97,7 +99,7 @@ public class DepartmentServiceImpl implements DepartmentService {
         department1.setName(department.getName());
         department1.setPatients(department.getPatients());
         List<Users> users =  department.getPatients();
-        users.remove(usersRepository.getUsersById(staffID));
+        users.remove(usersRepository.findById((long)staffID));
         department1.setStaff(users);
         return Optional.of(departmentRepository.saveAndFlush(department1));    }
 }
