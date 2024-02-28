@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "http://localhost:4200")
 public class AuthenticationController {
     private final AuthenticationService authenticationService;
+    public static String email;
 
     @PostMapping("/signup")
     public ResponseEntity<ResponseRequest> signup(@RequestBody @Valid SignUpRequest signUpRequest){
@@ -25,7 +26,9 @@ public class AuthenticationController {
 
     @PostMapping("/signin")
     public ResponseEntity<JWTSigninAuthenticationResponse> signIn(@RequestBody  @Valid SigninRequest signinRequest){
-        return new ResponseEntity<>(authenticationService.signIn(signinRequest), HttpStatus.CREATED);
+        ResponseEntity re = new ResponseEntity<>(authenticationService.signIn(signinRequest), HttpStatus.CREATED);
+        email = signinRequest.getEmail();
+        return re;
     }
 
     @PostMapping("/refresh")

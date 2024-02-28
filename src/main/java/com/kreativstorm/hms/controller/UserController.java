@@ -36,7 +36,7 @@ public class UserController {
 
     @GetMapping("/current-user")
     public ResponseEntity<Users> getCurrentUser(){
-        Optional<Users> user = usersService.getCurrentUser(1);
+        Optional<Users> user = usersService.getCurrentUser(AuthenticationController.email);
         if(user.isEmpty()){
             throw new ClientException("User Not Found");
         }

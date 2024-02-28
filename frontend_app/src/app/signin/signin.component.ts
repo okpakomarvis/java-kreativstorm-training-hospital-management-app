@@ -21,6 +21,7 @@ export class SigninComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.user = new User();
   }
 
   signin() {
@@ -33,7 +34,8 @@ export class SigninComponent implements OnInit{
   }
 
   successfulLogin(jwtToken: JwtToken){
-    localStorage.setItem('token', jwtToken.token);
+    localStorage.clear();
+    localStorage.setItem('token', jwtToken.refreshToken);
     this.usersService.getCurrentUser().subscribe((currentUser:User) => this.usersService.currentUser = currentUser);
     this.router.navigate(['/']);
   }
