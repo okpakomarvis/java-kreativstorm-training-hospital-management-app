@@ -57,8 +57,8 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Optional<Users> getCurrentUser(Integer id) {
-        return usersRepository.findById((long) id);
+    public Optional<Users> getCurrentUser(String email) {
+        return usersRepository.findByEmail(email);
     }
 
     @Override

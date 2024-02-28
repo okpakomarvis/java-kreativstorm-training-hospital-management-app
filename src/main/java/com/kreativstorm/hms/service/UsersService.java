@@ -14,7 +14,7 @@ public interface UsersService {
 
     Optional<Users> update(int id, SignUpRequest signUpRequest);
 
-    Optional<Users> getCurrentUser(Integer id);
+    Optional<Users> getCurrentUser(String email);
 
     List<Users> getAllPatients();
 

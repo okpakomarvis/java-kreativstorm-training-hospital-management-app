@@ -2,12 +2,12 @@
   <br/>
   <label>Email:</label>
   <br/>
-  <input [(ngModel)]="user?.email" [disabled] = "authenticating" autocomplete="email" name="email"
+  <input [(ngModel)]="user.email" [disabled] = "authenticating" autocomplete="email" name="email"
     placeholder="enter email" required type="email">
   <br/><br/>
   <label>Password:</label>
   <br/>
-  <input [(ngModel)]="user?.password" [disabled] = "authenticating" autocomplete="current-password" name="password"
+  <input [(ngModel)]="user.password" [disabled] = "authenticating" autocomplete="current-password" name="password"
          placeholder="enter password" required type="password">
   <br/><br/>
   <button (click)="signin();" [disabled]="!authenticationForm.valid || authenticating" type="submit">Sign in </button>
