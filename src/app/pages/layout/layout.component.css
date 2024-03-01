@@ -1,0 +1,32 @@
+.navBar-color{
+    background-color: #4b428a;
+}
+.navBarBrand{
+    color: #dfdded;
+}
+.navBar{
+    display: flex;
+    justify-content: end;
+}
+.pl{
+    padding-left: 25px;
+}
+.pl2{
+    padding-right: 25px;
+}
+.round{
+    padding: 10px 20px;
+    border-radius: #dfdded 2px solid;
+}
+.sidecolars{
+    width:20%;
+    height: 100vh;
+}
+
+.navBar-color2 {
+    background-color: #7d75b1;
+}
+.activated{
+    background-color: #7d75b1;
+    color: #fff;
+}

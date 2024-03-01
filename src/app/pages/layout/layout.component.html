@@ -1,0 +1,84 @@
+<!--
+<nav class="navbar navbar-expand-sm navBar-color justify-content-between">
+    <a class="navbar-brand navBarBrand pl " href="#">
+        <img src="../../../assets/img/4fa9c2_6b251196ef9d4de392ec6534596006e6~mv2.png" width="30" height="30"
+            class="d-inline-block align-top" alt="">
+        Hospital Management System
+    </a>
+    <ul class="navbar-nav pl2">
+        <li class="nav-item ">
+            <a class="nav-link navBarBrand " href="#">Logout</a>
+        </li>
+    </ul>
+</nav>
+-->
+<header>
+    <!-- Sidebar -->
+    <nav id="sidebarMenu" class="collapse d-lg-block sidebar sidecolars collapse navBar-color2">
+        <div class="position-sticky ">
+            <div class="list-group list-group-flush navBar-color mx-3 mt-4">
+                <a href="#" class="list-group-item list-group-item-action navBar-color2 py-2 ripple" aria-current="true">
+                    <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
+                </a>
+                <a href="/dashboard" class="list-group-item navBar-color2 nav Bar-color list-group-item-action py-2 ripple activated">
+                    <i class="fas fa-chart-area fa-fw me-3"></i><span>Home</span>
+                </a>
+                <a href="#" class="list-group-item navBar-color2 text-white list-group-item-action py-2 ripple"><i
+                        class="fas fa-lock fa-fw me-3"></i><span >Create Appointment</span></a>
+                <a href="#" class="list-group-item navBar-color2 text-white list-group-item-action py-2 ripple"><i
+                        class="fas fa-chart-line fa-fw me-3"></i><span>Manage Apointment</span></a>
+                <a href="#" class="list-group-item navBar-color2 text-white list-group-item-action py-2 ripple"><i
+                        class="fas fa-chart-bar fa-fw me-3"></i><span>Manage users</span></a>
+            </div>
+        </div>
+    </nav>
+    <!-- Sidebar -->
+
+    <!-- Navbar -->
+    <nav id="main-navbar" class="navbar navbar-expand-lg navBar-color fixed-top">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Toggle button -->
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
+                aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Brand -->
+        <a class="navbar-brand navBarBrand pl " href="#">
+            <img src="../../../assets/img/4fa9c2_6b251196ef9d4de392ec6534596006e6~mv2.png" width="30" height="30"
+                class="d-inline-block align-top" alt="">
+            Hospital Management System
+        </a>
+
+            <!-- Right links -->
+            <ul class="navbar-nav ms-auto d-flex flex-row">
+                <!-- Notification dropdown -->
+                <!-- Icon -->
+                <li class="nav-item">
+                    <a class="nav-link me-3 me-lg-0" href="#">
+                        <i class="fas fa-fill-drip"></i>
+                    </a>
+                </li>
+                <!-- Icon -->
+                <li class="nav-item me-3 me-lg-0">
+                    <a class="nav-link" href="#">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <ul class="navbar-nav pl2">
+                    <i class="fas fa-fill-drip"></i>
+                    <li class="nav-item ">
+                        <a class="nav-link navBarBrand " (click)="onLogout()">Logout</a>
+                    </li>
+                </ul>
+                <!-- Icon dropdown -->
+                
+                <!-- Avatar -->
+            </ul>
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+</header>
+<router-outlet />
