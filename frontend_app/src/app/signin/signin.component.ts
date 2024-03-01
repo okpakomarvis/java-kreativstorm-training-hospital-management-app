@@ -34,7 +34,6 @@ export class SigninComponent implements OnInit{
   }
 
   successfulLogin(jwtToken: JwtToken){
-    localStorage.clear();
     localStorage.setItem('token', jwtToken.refreshToken);
     this.usersService.getCurrentUser().subscribe((currentUser:User) => this.usersService.currentUser = currentUser);
     this.router.navigate(['/']);

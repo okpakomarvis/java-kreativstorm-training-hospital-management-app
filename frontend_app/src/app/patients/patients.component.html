@@ -1,8 +1,11 @@
 <h2>Patients</h2>
-<input id="search" type="text" placeholder="Enter patients id..."
-       [(ngModel)]="searchText" (ngModelChange)="textChange()"/>
+<div class="patients">
+  <label for="search">Patient:</label>
+  <input id="search" type="text" placeholder="Enter patients id..."
+        [(ngModel)]="searchText" (ngModelChange)="textChange()"/>
+</div>
 <br/>
-<ul class="nazivi">
+<ul class="patients">
   <li *ngFor="let patient of patients" >
     <div style="display: flex">
       <div
@@ -15,7 +18,7 @@
   </li>
 </ul>
 
-<div *ngIf="selectedPatient">
+<div *ngIf="selectedPatient" class="selectedPatient">
   <app-patient-details [patient]="selectedPatient"> </app-patient-details>
   <br/>
 </div>

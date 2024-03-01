@@ -1,0 +1,26 @@
+form{
+  text-align: center;
+}
+
+a{
+  width: 100%;
+  text-align: center;
+  color: blue;
+  display: inline-block;
+}
+
+a:active{
+  text-decoration: none;
+}
+
+a:visited{
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+a:link{
+  text-decoration: none;
+}
