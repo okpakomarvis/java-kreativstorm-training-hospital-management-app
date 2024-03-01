@@ -1,0 +1,40 @@
+.bodi{
+  padding-bottom: 5%;
+
+}
+
+h1{
+  width: 100%;
+  text-align: center;
+}
+
+nav{
+  padding: 5px;
+  text-align: center;
+}
+
+a{
+  text-underline-mode: none;
+  color: azure;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 10px;
+  background-color: dodgerblue;
+}
+
+a:active{
+  text-decoration: none;
+}
+
+a:visited{
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+a:link{
+  text-decoration: none;
+}

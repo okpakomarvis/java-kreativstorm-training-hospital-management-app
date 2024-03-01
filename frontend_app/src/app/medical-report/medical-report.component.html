@@ -1,7 +1,9 @@
 <h2>Medical Reports</h2>
 <br/>
-<input id="searchPatient" type="number" placeholder="enter patients ID" #search >
-
+<div class="searchPat">
+  <label for="searchPatient" class="lable">Patient:</label>
+  <input id="searchPatient" type="number" placeholder="enter patients ID" #search >
+</div>
 <div *ngIf="search">
 
 </div>
@@ -9,9 +11,10 @@
 <!-- list patients that match entered ID -->
 
 <br/>
-<label for="cb">I want to add new report</label>
-<input type="checkbox" id="cb" #cb (click)="refresh()" />
-
+<div class="searchPat">
+  <label for="cb">I want to add new report</label>
+  <input type="checkbox" id="cb" #cb (click)="refresh()" />
+</div>
 <div *ngIf="cb.checked">
   <br/>
   <h3>Enter new medical report</h3>

@@ -3,7 +3,7 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor, HttpHeaders
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -17,7 +17,7 @@ export class JwtInterceptorInterceptor implements HttpInterceptor {
     if(token){
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${token}`
+          Authorization: `bearer ${token}`
         }
       })
     }
