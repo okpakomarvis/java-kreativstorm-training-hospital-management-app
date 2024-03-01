@@ -30,7 +30,7 @@ public class applicationExceptionHandler {
         Map<String, Object> error = new HashMap<>();
         error.put(STATUS, FAILED);
         error.put("TimeStamp", System.currentTimeMillis());
-        error.put("errors:", errorMap);
+        error.put("errors", errorMap);
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 

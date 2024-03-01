@@ -1,5 +1,6 @@
 package com.kreativstorm.hms.controller;
 
+import com.kreativstorm.hms.config.JWTAuthenticationFilter;
 import com.kreativstorm.hms.dto.SignUpRequest;
 import com.kreativstorm.hms.entities.Users;
 import com.kreativstorm.hms.exception.ClientException;
@@ -15,10 +16,13 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/user")
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
     private final  UsersService usersService;
+
+    private final JWTAuthenticationFilter jwtAuthenticationFilter;
 
     @PutMapping("/update/{id}")
     public ResponseEntity<Users> upadateUser(@PathVariable("id") Integer id,
@@ -37,7 +41,7 @@ public class UserController {
 
     @GetMapping("/current-user")
     public ResponseEntity<Users> getCurrentUser(){
-        Optional<Users> user = usersService.getCurrentUser(AuthenticationController.email);
+        Optional<Users> user = usersService.getCurrentUser(jwtAuthenticationFilter.getCurrentUserEmail());
         if(user.isEmpty()){
             throw new ClientException("User Not Found");
         }

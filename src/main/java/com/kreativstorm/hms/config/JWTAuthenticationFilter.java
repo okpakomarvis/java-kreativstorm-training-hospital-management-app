@@ -24,11 +24,12 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
 
     private final JWTService jwtService;
     private final UsersService usersService;
+    private String userEmail;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
-        final String userEmail;
+
         if (StringUtils.isEmpty(authHeader) || !org.apache.commons.lang3.StringUtils.startsWith(authHeader, "Bearer")){
             filterChain.doFilter(request, response);
             return;
@@ -52,5 +53,9 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             }
         }
         filterChain.doFilter(request, response);
+    }
+
+    public String getCurrentUserEmail(){
+        return userEmail;
     }
 }

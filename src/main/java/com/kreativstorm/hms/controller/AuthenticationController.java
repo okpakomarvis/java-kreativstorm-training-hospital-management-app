@@ -26,9 +26,8 @@ public class AuthenticationController {
 
     @PostMapping("/signin")
     public ResponseEntity<JWTSigninAuthenticationResponse> signIn(@RequestBody  @Valid SigninRequest signinRequest){
-        ResponseEntity re = new ResponseEntity<>(authenticationService.signIn(signinRequest), HttpStatus.CREATED);
-        email = signinRequest.getEmail();
-        return re;
+         return new ResponseEntity<>(authenticationService.signIn(signinRequest), HttpStatus.CREATED);
+
     }
 
     @PostMapping("/refresh")
