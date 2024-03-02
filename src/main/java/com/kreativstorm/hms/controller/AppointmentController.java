@@ -27,22 +27,18 @@ public class AppointmentController {
     private UsersService usersService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<AppointmentDTO> getAppointmentByPatientID(@PathVariable("id") Integer patientID){
-        AppointmentDTO appointmentDTO = new AppointmentDTO();
-        if(appointmentService.getAppointment(patientID).isPresent()){
-            Appointment app = appointmentService.getAppointment(patientID).get();
-            appointmentDTO.setScheduledFor(app.getScheduledFor());
-            appointmentDTO.setPatient(usersService.getUserByID(patientID.longValue()).get());
-            appointmentDTO.setDoctor(usersService.getUserByID(app.getDoctorID().longValue()).get());
-            return ResponseEntity.status(HttpStatus.FOUND).body(appointmentDTO);
-        }
+    public ResponseEntity<List<AppointmentDTO>> getAppointmentByPatientID(@PathVariable("id") Integer patientID){
+        List<Appointment> appointments = appointmentService.getAppointments(patientID);
+        List<AppointmentDTO> appointmentDTOS= this.appointmentList(appointments);
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        if (!appointmentDTOS.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.OK).body(appointmentDTOS);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
-    @GetMapping("/all-appointments")
-    public ResponseEntity<List<AppointmentDTO>> getAllAppointments(){
-        List<Appointment> appointments = appointmentService.getAll();
+    private List<AppointmentDTO> appointmentList(List<Appointment> appointments){
         List<AppointmentDTO> appointmentDTOS = new ArrayList<>();
 
         for(Appointment app: appointments){
@@ -52,6 +48,14 @@ public class AppointmentController {
             appointmentDTO.setDoctor(usersService.getUserByID(app.getDoctorID().longValue()).get());
             appointmentDTOS.add(appointmentDTO);
         }
+
+        return appointmentDTOS;
+    }
+
+    @GetMapping("/all-appointments")
+    public ResponseEntity<List<AppointmentDTO>> getAllAppointments(){
+        List<Appointment> appointments = appointmentService.getAll();
+        List<AppointmentDTO> appointmentDTOS= this.appointmentList(appointments);
 
         if (!appointmentDTOS.isEmpty()) {
             return ResponseEntity.status(HttpStatus.OK).body(appointmentDTOS);
