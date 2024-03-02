@@ -2,9 +2,11 @@ package com.kreativstorm.hms.controller;
 
 import com.kreativstorm.hms.dto.SignUpRequest;
 import com.kreativstorm.hms.entities.Appointment;
+import com.kreativstorm.hms.entities.AppointmentDTO;
 import com.kreativstorm.hms.entities.Users;
 import com.kreativstorm.hms.exception.ClientException;
 import com.kreativstorm.hms.service.AppointmentService;
+import com.kreativstorm.hms.service.UsersService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,11 +21,21 @@ import java.util.Optional;
 public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService;
+    @Autowired
+    private UsersService usersService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Appointment> getAppointmentByPatientID(@PathVariable("id") Integer patientID){
-        return appointmentService.getAppointment(patientID).map(Appointment -> ResponseEntity.status(HttpStatus.FOUND)
-                .body(Appointment)).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    public ResponseEntity<AppointmentDTO> getAppointmentByPatientID(@PathVariable("id") Integer patientID){
+        AppointmentDTO appointmentDTO = new AppointmentDTO();
+        if(appointmentService.getAppointment(patientID).isPresent()){
+            Appointment app = appointmentService.getAppointment(patientID).get();
+            appointmentDTO.setScheduledFor(app.getScheduledFor());
+            appointmentDTO.setPatient(usersService.getUserByID(patientID.longValue()).get());
+            appointmentDTO.setDoctor(usersService.getUserByID(app.getDoctorID().longValue()).get());
+            return ResponseEntity.status(HttpStatus.FOUND).body(appointmentDTO);
+        }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
     @PostMapping("/save")
