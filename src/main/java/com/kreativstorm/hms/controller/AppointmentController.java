@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -38,6 +40,26 @@ public class AppointmentController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
+    @GetMapping("/all-appointments")
+    public ResponseEntity<List<AppointmentDTO>> getAllAppointments(){
+        List<Appointment> appointments = appointmentService.getAll();
+        List<AppointmentDTO> appointmentDTOS = new ArrayList<>();
+
+        for(Appointment app: appointments){
+            AppointmentDTO appointmentDTO = new AppointmentDTO();
+            appointmentDTO.setScheduledFor(app.getScheduledFor());
+            appointmentDTO.setPatient(usersService.getUserByID(app.getPatientID().longValue()).get());
+            appointmentDTO.setDoctor(usersService.getUserByID(app.getDoctorID().longValue()).get());
+            appointmentDTOS.add(appointmentDTO);
+        }
+
+        if (!appointmentDTOS.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.OK).body(appointmentDTOS);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+    }
     @PostMapping("/save")
     public void addAppointment(@RequestBody @Valid Appointment appointment){
          appointmentService.saveAppointment(appointment);
