@@ -24,8 +24,8 @@ public class AppointmentServiceImpl implements AppointmentService {
     private AppointmentRepository appointmentRepository;
 
     @Override
-    public Optional<Appointment> getAppointment(Integer patientID) {
-        return appointmentRepository.getAppointmentByPatientID(patientID);
+    public List<Appointment> getAppointments(Integer patientID) {
+        return appointmentRepository.findAllByPatientID(patientID);
     }
 
     @Override
