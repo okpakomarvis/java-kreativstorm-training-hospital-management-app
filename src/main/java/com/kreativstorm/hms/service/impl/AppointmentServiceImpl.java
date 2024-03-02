@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -50,5 +51,10 @@ public class AppointmentServiceImpl implements AppointmentService {
         appointment1.setPatientID(appointment.getPatientID());
         appointment1.setScheduledFor(appointment.getScheduledFor());
         return Optional.of(appointmentRepository.saveAndFlush(appointment1));
+    }
+
+    @Override
+    public List<Appointment> getAll() {
+        return appointmentRepository.findAll();
     }
 }
