@@ -1,3 +1,4 @@
+
 export class User{
     email: String;
     password:String;
@@ -38,6 +39,7 @@ export class ErrorRegister{
     }
 }
 export class CurrentUser{
+    id:Number;
     email: String;
     password:String;
     name:String;
@@ -50,6 +52,7 @@ export class CurrentUser{
     staffDepartments: any[];
 
     constructor(){
+        this.id =0;
         this.email="";
         this.password="";
         this.name ="";
@@ -60,5 +63,20 @@ export class CurrentUser{
         this.authorities=[];
         this.patiensDepartments=[];
         this.staffDepartments=[];
+    }
+}
+
+export class Appointment{
+    scheduledFor:any[];
+    patient:CurrentUser;
+    doctor:CurrentUser;
+    username:string;
+
+    constructor(){
+        this.scheduledFor =[];
+        this.patient= new CurrentUser();
+        this.doctor = new CurrentUser();
+        this.username ="";
+
     }
 }

@@ -1,0 +1,41 @@
+<main style="margin-left: 48vh;margin-top: -90vh; ">
+    <div class="container pt-10 ">
+        <div class="jumbotron">
+            <h3>Manage Users</h3>
+            <p><i>List of all users, only admin will see this list</i> </p>
+        </div>
+           
+                    <table class="table table-hover caption-top">
+                        <caption>List of users</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Infor</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let user of users;let i=index">
+                                <th scope="row">{{i+1}}</th>
+                                <td>{{user.name}}</td>
+                                <td>{{user.email}}</td>
+                                <td>{{user.title}}</td>
+                                <td>{{user.info}}</td>
+                                <td>{{user.role.toLowerCase()}}</td>
+                                <td>
+                                        <button class="d-inline  btn-info btColor2" type="button">update</button>
+                                   /
+                                    <button class="d-inline   btn-danger btColor" type="button">delete</button>
+                                </td>
+                            </tr>
+                        
+                        </tbody>
+                    </table>
+    </div>
+
+</main>
+

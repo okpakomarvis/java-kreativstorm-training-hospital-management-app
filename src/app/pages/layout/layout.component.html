@@ -23,13 +23,16 @@
                 <a href="/dashboard" class="list-group-item navBar-color2 nav Bar-color list-group-item-action py-2 ripple activated">
                     <i class="fas fa-chart-area fa-fw me-3"></i><span>Home</span>
                 </a>
-                <a href="#" class="list-group-item navBar-color2 text-white list-group-item-action py-2 ripple"><i
+                <a  class="list-group-item navBar-color2 text-white list-group-item-action py-2 ripple"><i
                         class="fas fa-lock fa-fw me-3"></i><span >Create Appointment</span></a>
-                <a href="#" class="list-group-item navBar-color2 text-white list-group-item-action py-2 ripple"><i
+                <a class="list-group-item navBar-color2 text-white list-group-item-action py-2 ripple"><i
                         class="fas fa-chart-line fa-fw me-3"></i><span>Manage Apointment</span></a>
-                <a href="#" class="list-group-item navBar-color2 text-white list-group-item-action py-2 ripple"><i
+                <a href="/manageuser" class="list-group-item navBar-color2 text-white list-group-item-action py-2 ripple"><i
                         class="fas fa-chart-bar fa-fw me-3"></i><span>Manage users</span></a>
-            </div>
+                  <a href="/profile" class="list-group-item navBar-color2 text-white list-group-item-action py-2 ripple"><i
+                    class="fas fa-chart-bar fa-fw me-3"></i><span>Profile</span></a>
+            
+                </div>
         </div>
     </nav>
     <!-- Sidebar -->
@@ -69,7 +72,7 @@
                 <ul class="navbar-nav pl2">
                     <i class="fas fa-fill-drip"></i>
                     <li class="nav-item ">
-                        <a class="nav-link navBarBrand " (click)="onLogout()">Logout</a>
+                        <a class="nav-link navBarBrand " (click)="onLogout()">Logout ( {{ user.role.toLocaleLowerCase()}} )</a>
                     </li>
                 </ul>
                 <!-- Icon dropdown -->

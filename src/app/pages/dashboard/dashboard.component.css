@@ -1,0 +1,36 @@
+.row-striped:nth-of-type(odd) {
+    background-color: #efefef;
+    border-left: 4px #000000 solid;
+}
+
+.row-striped:nth-of-type(even) {
+    background-color: #ffffff;
+    border-left: 4px #efefef solid;
+}
+
+.row-striped {
+    padding: 15px 0;
+}
+.bg{
+    background-color: #9a9a9a;
+}
+.bgCol {
+    background-color: #f8f4f4;
+}
+.bgBorder{
+    border: 3px solid #d1cfcf;
+}
+.fs{
+    font-size: medium;
+}
+.navBar-color2 {
+    background-color: #7d75b1;
+}
+.navBar-color {
+    background-color: #4b428a;
+}
+:modal {
+    border: 5px solid red;
+    background-color: yellow;
+    box-shadow: 3px 3px 10px rgb(0 0 0 / 50%);
+}

@@ -1,10 +1,11 @@
 <!--Main layout-->
-<main style="margin-left: 48vh;margin-top: -90vh;">
-    <div class="container pt-10">
+<main style="margin-left: 48vh;margin-top: -90vh; ">
+    <div class="container pt-10 ">
         <div class="jumbotron">
             <h3 >Welcome {{user.name}}</h3>
             <p><i>View Appointments</i> </p>
         </div>
+        <!--
             <div class="row">
                 <div class="col-sm">
                     One of three columns
@@ -16,5 +17,45 @@
                     One of three columns
                 </div>
         </div>
+        -->
+        <div class="row">
+            <div class="col" *ngFor="let appoint of appointment">
+            <div class="row row-striped bgBorder w-100 mt-5" >
+                <div class="col-2 text-right w-25 ">
+                    <h1 class="display-6 bg"><span class="badge badge-secondary text-white"> {{appoint.scheduledFor[2]}}</span></h1>
+                    <h4>{{getCurrentMonth(appoint.scheduledFor[1]) | uppercase}}</h4>
+                </div>
+                <div class="col-10 bgCol w-75 pt-3">
+                    <h3 class="text-uppercase fs"><strong>Doctor Appointment Detials</strong></h3>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><i class="fa fa-calendar-o" aria-hidden="true"></i> {{getCurrentDay(appoint.scheduledFor[0],appoint.scheduledFor[1],appoint.scheduledFor[2])}}</li>
+                        <li class="list-inline-item"><i class="fa fa-clock-o" aria-hidden="true"></i> {{changeTimeFormat(appoint.scheduledFor[3],appoint.scheduledFor[4],appoint.scheduledFor[5])}}</li>
+                        <li class="list-inline-item"><i class="fa fa-location-arrow" aria-hidden="true"></i> Hospital</li>
+                    </ul>
+                    <ul class="list-group">
+                        <li class="list-group-item">Doctor Name : {{appoint.doctor.name}}</li>
+                        <li class="list-group-item">Email : {{appoint.doctor.email}}</li>
+                        <li class="list-group-item">Title: {{appoint.doctor.title}}</li>
+                        <li class="list-group-item">Info: {{appoint.doctor.info}}</li>
+                    </ul>
+                    <div class="d-flex pt-3 justify-content-end">
+                        <li class="list-inline-item mr-5"><i class="fa fa-calendar-o" aria-hidden="true"></i>
+                            <button class="btn navBar-color text-white"type="button" routerLink="/">Edit</button>
+                        </li>
+                        <li class="list-inline-item "><i class="fa fa-clock-o" aria-hidden="true"></i>
+                            <button class="btn btn-success ml-3 text-white" type="button" id="myModal"data-toggle="modal" data-target="#myModal">Create</button>
+                        </li>
+                       
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        </div>
+    <!--modal for create appointment-->
+    <!-- Button trigger modal -->
+    <!-- Simple modal dialog containing a form -->
+    
     </div>
 </main>
+
